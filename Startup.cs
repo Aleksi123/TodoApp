@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TodoApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TodoApp
 {
@@ -24,6 +26,9 @@ namespace TodoApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<TodoAppContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("TodoAppContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
